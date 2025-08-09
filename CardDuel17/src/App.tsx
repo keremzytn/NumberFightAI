@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StatusBar } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 import { MainMenuScreen } from '@/screens/MainMenuScreen';
 import { GameScreen } from '@/screens/GameScreen';
@@ -25,7 +25,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 const App: React.FC = () => {
   return (
     <NavigationContainer>
-      <StatusBar barStyle="light-content" backgroundColor="#2c3e50" />
+      <StatusBar style="light" backgroundColor="#2c3e50" />
       <Stack.Navigator
         initialRouteName="MainMenu"
         screenOptions={{
