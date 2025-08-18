@@ -26,9 +26,11 @@ export interface GameState {
   winner?: string;
   roundHistory: RoundResult[];
   currentPlayerIndex: number;
+  specialRules?: SpecialRuleState[];
+  usedCards: { [playerId: string]: Card[] }; // Her oyuncunun kullandığı kartların listesi
 }
 
-export type GamePhase = 
+export type GamePhase =
   | 'waiting'
   | 'card_selection'
   | 'revealing'
@@ -69,9 +71,9 @@ export interface Room {
 
 // Special rule types
 export interface SpecialRuleState {
-  fifthRoundException: boolean; // Rule 4.4 - 5th round exception for consecutive cards
-  consecutiveCards?: [Card, Card, Card]; // The three consecutive cards
-  middleCard?: Card; // The middle card that was played
+  fifthRoundException: boolean; // 5. raund özel durumu
+  playerId: string; // Özel duruma giren oyuncunun ID'si
+  middleCard: Card; // Oynanan ortadaki kart
 }
 
 // AI decision making

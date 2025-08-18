@@ -115,7 +115,7 @@ export const GameHUD: React.FC<GameHUDProps> = ({
             {formatTime(remainingTime)}
           </Animated.Text>
         </Animated.View>
-        
+
         <View style={styles.progressBarContainer}>
           <View
             style={[
@@ -136,15 +136,37 @@ export const GameHUD: React.FC<GameHUDProps> = ({
             {player1.name}
           </Text>
           <Text style={styles.scoreText}>{player1.score}</Text>
+          <View style={styles.usedCardsContainer}>
+            {gameState.usedCards[player1.id].map((card, index) => (
+              <Animated.View
+                key={`${card}-${index}`}
+                style={[styles.usedCard]}
+                entering={Animated.FadeIn.duration(300)}
+              >
+                <Text style={styles.usedCardText}>{card}</Text>
+              </Animated.View>
+            ))}
+          </View>
         </View>
-        
+
         <Text style={styles.scoreSeparator}>-</Text>
-        
+
         <View style={styles.playerScore}>
           <Text style={styles.playerName} numberOfLines={1}>
             {player2.name}
           </Text>
           <Text style={styles.scoreText}>{player2.score}</Text>
+          <View style={styles.usedCardsContainer}>
+            {gameState.usedCards[player2.id].map((card, index) => (
+              <Animated.View
+                key={`${card}-${index}`}
+                style={[styles.usedCard]}
+                entering={Animated.FadeIn.duration(300)}
+              >
+                <Text style={styles.usedCardText}>{card}</Text>
+              </Animated.View>
+            ))}
+          </View>
         </View>
       </View>
     </View>
@@ -192,9 +214,9 @@ export const RoundHistory: React.FC<{ gameState: GameState }> = ({ gameState }) 
         </View>
       </View>
       <Text style={styles.historyResult}>
-        {lastRound.winner === 'tie' ? 'Tie!' : 
-         lastRound.winner === 'player1' ? `${gameState.players[0].name} won!` :
-         `${gameState.players[1].name} won!`}
+        {lastRound.winner === 'tie' ? 'Tie!' :
+          lastRound.winner === 'player1' ? `${gameState.players[0].name} won!` :
+            `${gameState.players[1].name} won!`}
       </Text>
     </Animated.View>
   );
@@ -335,5 +357,26 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 12,
     fontWeight: '600',
+  },
+  usedCardsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    marginTop: 5,
+    gap: 4,
+  },
+  usedCard: {
+    width: 24,
+    height: 24,
+    backgroundColor: '#e74c3c',
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    opacity: 0.8,
+  },
+  usedCardText: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: 'bold',
   },
 });
