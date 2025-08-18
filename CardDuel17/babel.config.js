@@ -4,9 +4,10 @@ module.exports = function (api) {
     presets: ['babel-preset-expo'],
     plugins: [
       ['module-resolver', {
-        root: ['./src'],
+        root: ['.'],
         alias: {
           '@': './src',
+          '~': './'
         },
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
       }]

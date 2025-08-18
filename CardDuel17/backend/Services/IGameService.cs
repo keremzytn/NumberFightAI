@@ -5,12 +5,15 @@ namespace CardDuelBackend.Services;
 public interface IGameService
 {
     Task<GameServiceResult> CreateRoomAsync(GameMode mode, Guid hostId);
+    Task<GameRoom> CreateGameRoomAsync(Guid userId, GameMode mode);
     Task<GameServiceResult> JoinRoomAsync(string roomCode, Guid userId);
+    Task JoinGameRoomAsync(string roomCode, Guid userId);
     Task<GameServiceResult> PlayCardAsync(Guid roomId, Guid userId, int card);
     Task<object> StartGameAsync(Guid roomId);
     Task LeaveRoomAsync(Guid roomId, Guid userId);
     Task<string?> GetRoomCodeAsync(Guid roomId);
     Task<List<GameRoomDto>> GetActiveRoomsForUserAsync(Guid userId);
+    Task<List<GameRoomDto>> GetAvailableRoomsAsync();
     Task MarkPlayerDisconnectedAsync(Guid roomId, Guid userId);
     Task MarkPlayerConnectedAsync(Guid roomId, Guid userId);
     Task<object?> GetCurrentGameStateAsync(Guid roomId);

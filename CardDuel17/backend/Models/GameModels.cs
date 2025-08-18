@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace CardDuelBackend.Models;
 
@@ -23,7 +24,7 @@ public class User
     public int? FavoriteCard { get; set; }
     
     [Column(TypeName = "decimal(5,2)")]
-    public decimal WinRate => GamesPlayed > 0 ? (decimal)GamesWon / GamesPlayed * 100 : 0;
+    public decimal WinRate { get; set; }
     
     // Navigation properties
     public virtual ICollection<GameRoom> HostedRooms { get; set; } = new List<GameRoom>();

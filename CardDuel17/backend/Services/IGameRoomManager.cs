@@ -9,13 +9,6 @@ public interface IGameRoomManager
     void RemovePlayer(Guid roomId, Guid userId);
 }
 
-public interface IUserService
-{
-    Task<Guid> CreateOrGetUserAsync(string username);
-    Task<Models.UserStatsDto?> GetUserStatsAsync(Guid userId);
-    Task<List<Models.MatchHistory>> GetMatchHistoryAsync(Guid userId, int limit = 10);
-}
-
 public class GamePlayResult
 {
     public bool Success { get; set; }
